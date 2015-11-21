@@ -104,7 +104,27 @@ Initially, the plan was to use three models for this project -- Random Forest, D
 
 There was enough time to play around with the Random Forest model.  On the first pass, using five folds and 250 trees, it gave good results but ran slowly. So the model was run using two different settings for the number of folds -- 5 and 10 -- and three different settings for the numbers of trees -- 250, 50, and 25.
 
-The model using 5 folds and 250 trees had an accuracy rate of 0.998.  To speed things up, a model using 10 fold and 50 trees was tried.  It had an accuracy of 0.9
+The model using 5 folds and 250 trees had an accuracy rate of 0.998.  
+
+```
+Random Forest 
+
+11776 samples
+   52 predictor
+    5 classes: 'A', 'B', 'C', 'D', 'E' 
+
+No pre-processing
+Resampling: Cross-Validated (5 fold) 
+Summary of sample sizes: 9420, 9421, 9422, 9420, 9421 
+Resampling results across tuning parameters:
+
+  mtry  Accuracy   Kappa      Accuracy SD  Kappa SD   
+   2    0.9888756  0.9859277  0.001484507  0.001876981
+  27    0.9888757  0.9859270  0.002173340  0.002747416
+  52    0.9800443  0.9747497  0.005979820  0.007560934
+```
+
+To speed things up, a model using 10 fold and 50 trees was tried.  It had an accuracy of 0.9
 
 
 
