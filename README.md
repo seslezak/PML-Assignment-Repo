@@ -17,6 +17,31 @@ The classes are:
 
 Using data from the training set, the model can predict which fashion each of the 20 individual participants in the testing set employed while being monitored by their fitness device. 
 
+###Planning the Machine Learning Model
+
+The steps followed in preparing the model were:
+
+   1. viewing and cleaning the data
+   2. choosing the packages
+   3. dividing data into two parts (training and validation)
+   4. selecting models to train
+   5. training models
+   6. validating models
+   7. running models on test data
+   8. assess accuracy of prediction
+
+The training data set contained 19,622 observations of 160 variables.  The testing data set contained 20 observations of 160 variables. Nearly two-thirds of the observations were missing.  The first seven columns of each file contained superfluous information which had to be removed.  We also had to set a seed to allow for replicability of the experiment.  The following code was used for these purposes:
+
+>set.seed(3663)  
+trainDatRaw <- read.csv("path\\Practical Machine Learning\\pml-training.csv", na.strings = c('NA', '#DIV/0!', ''))  
+testDatRaw <- read.csv("path\\Practical Machine Learning\\pml-testing.csv", na.strings = c('NA', '#DIV/0!', ''))  
+traindatClean <- trainDatRaw[, -c(1:7)]  
+testdatClean <- testDatRaw[, -c(1:7)]  
+traindatClean <- traindatClean[, colSums(is.na(traindatClean)) == 0]  
+testdatClean <- testdatClean[, colSums(is.na(testdatClean)) == 0]  
+
+
+
 
 
 
