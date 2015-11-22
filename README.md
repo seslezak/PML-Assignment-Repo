@@ -157,7 +157,7 @@ Resampling results across tuning parameters:
 
 The quickest experiment used 5 folds and 25 trees. Its accuracy was 0.9822.  So a lot of speed was gained without giving up accuracy by using a simpler cross-validation method.
 
-Figure 3:  Random Forest Results, number = 5, ntree = 25
+######Figure 3:  Random Forest Results, number = 5, ntree = 25
 ```
 Random Forest 
 
@@ -232,4 +232,5 @@ outOfSample
 endResults <- predict(modelRF, testdatClean[, -length(testdatClean)])
 endResults
 ```
-xxx
+
+####END
