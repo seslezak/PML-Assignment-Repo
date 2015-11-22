@@ -25,11 +25,9 @@ The steps followed in preparing the model were:
    2. choosing the packages
    3. dividing data into two parts (training and validation)
    4. viewing the cleaned data sets
-   5. selecting models and cross-validation
-   6. training models
-   7. validating models
-   8. running models on test data
-   9. assessing accuracy of prediction
+   5. training models and cross-validation
+   6. validating models
+   7. running models on test data
 
 #####Viewing and Cleaning Data
 
@@ -98,13 +96,24 @@ INSERT PLOT #2 HERE
 
 INSERT PLOT #3 HERE
 
-#####Selecting Models and Cross-Validation
+#####Training Models and Cross-Validation
 
 Initially, the plan was to use three models for this project -- Random Forest, Decision Tree, and GBM. All three were tried, but only the Random Forest model gave useful results. There wasn't time to debug the code for the other two models, though the Decision Tree approach did work.  I could not get the GBM model to function properly before the project deadline.
 
-There was enough time to play around with the Random Forest model's .  On the first pass, using five folds and 250 trees, it gave good results but ran slowly. So the model was run using two different settings for the number of folds -- 5 and 10 -- and three different settings for the numbers of trees -- 250, 50, and 25.
+Here is the code run for training the Random Forest models. Hashtags were used to deactivate different versions of the model using different parameters for the number of folds and the numbers of trees.
 
-The model using 5 folds and 250 trees had an accuracy rate of 0.9888.  
+```
+contParams <- trainControl(method = 'cv', 5)
+#contParams <- trainControl(method = 'cv', 10)
+#modelRF <- train(classe ~. , data = trainDat, method = 'rf', trControl = contParams, ntree = 250)
+#modelRF <- train(classe ~. , data = trainDat, method = 'rf', trControl = contParams, ntree = 50)
+modelRF <- train(classe ~. , data = trainDat, method = 'rf', trControl = contParams, ntree = 25)
+modelRF
+```
+
+There was enough time to play around with the Random Forest model's settings.  On the first pass, using 5 folds and 250 trees, it gave good results but ran slowly. So the model was run using two different settings for the number of folds -- 5 and 10 -- and three different settings for the numbers of trees -- 250, 50, and 25.
+
+The model using 5 folds and 250 trees had an accuracy rate of 0.9888 on the 60% of data contained in the test set.
 
 ######Figure 1:  Random Forest Results, number = 5, ntree = 250
 ```
@@ -146,7 +155,7 @@ Resampling results across tuning parameters:
   52    0.9824228  0.9777640  0.004326004  0.005470536
 ```
 
-A number of other combinations of folds and numbers of trees were tried.  The quickest experiment used 5 folds and 25 trees. Its accuracy was 0.9822.  So a lot of speed was gained without giving up accuracy by using a simpler cross-validation method.
+The quickest experiment used 5 folds and 25 trees. Its accuracy was 0.9822.  So a lot of speed was gained without giving up accuracy by using a simpler cross-validation method.
 
 Figure 3:  Random Forest Results, number = 5, ntree = 25
 ```
@@ -167,27 +176,49 @@ Resampling results across tuning parameters:
   52    0.9784304  0.9727105  0.003444083  0.004365999
 ```
 
+#####Validating Models
 
+The Random Forest model was then used on the 40% of data constituting the validation set.  The following code was run:
 
-
-
-
-
-
- 
-```  
-contParams <- trainControl(method = 'cv', 5)  
-modelRF <- train(classe ~. , data = trainDat, method = 'rf', trControl = contParams, ntree = 50)#250  
-modelRF  
-predictRF <- predict(modelRF, validDat)  
-confusionMatrix(validDat$classe, predictRF)  
-accRF <- postResample(predictRF, validDat$classe)  
-accResultsRF <- accRF[1]
-outOfSample <- 1 - as.numeric(confusionMatrix(validDat$classe, predictRF)$overall[1])
-endResults <- predict(modelRF, testdatClean[, -length(testdatClean)])
-endResults
+```
+predictRF <- predict(modelRF, validDat)
+confusionMatrix(validDat$classe, predictRF)
 ```
 
+The resulting Confusion Matrix had 0.9904 accuracy.
 
-The complete code follows without comments:
+```
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 2227    3    1    0    1
+         B   16 1494    8    0    0
+         C    0   10 1345   13    0
+         D    1    1   16 1266    2
+         E    0    0    3    0 1439
+
+Overall Statistics
+               Accuracy : 0.9904         
+                 95% CI : (0.988, 0.9925)
+    No Information Rate : 0.286          
+    P-Value [Acc > NIR] : < 2.2e-16      
+                                         
+                  Kappa : 0.9879         
+ Mcnemar's Test P-Value : NA             
+
+Statistics by Class:
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.9924   0.9907   0.9796   0.9898   0.9979
+Specificity            0.9991   0.9962   0.9964   0.9970   0.9995
+Pos Pred Value         0.9978   0.9842   0.9832   0.9844   0.9979
+Neg Pred Value         0.9970   0.9978   0.9957   0.9980   0.9995
+Prevalence             0.2860   0.1922   0.1750   0.1630   0.1838
+Detection Rate         0.2838   0.1904   0.1714   0.1614   0.1834
+Detection Prevalence   0.2845   0.1935   0.1744   0.1639   0.1838
+Balanced Accuracy      0.9958   0.9935   0.9880   0.9934   0.9987
+```
+#####Running Models on Test Data
+
+
 
