@@ -218,7 +218,17 @@ Detection Rate         0.2838   0.1904   0.1714   0.1614   0.1834
 Detection Prevalence   0.2845   0.1935   0.1744   0.1639   0.1838
 Balanced Accuracy      0.9958   0.9935   0.9880   0.9934   0.9987
 ```
+Out of Sample Error was 0.0095.
+
 #####Running Models on Test Data
 
+The trained and validated Random Forest model was then applied to the test data set consisting of quality activity measurements of 20 individuals.  The following code succeeded in predicting 20 out of 20 cases.
 
-
+```
+accRF <- postResample(predictRF, validDat$classe)
+accResultsRF <- accRF[1]
+outOfSample <- 1 - as.numeric(confusionMatrix(validDat$classe, predictRF)$overall[1])
+outOfSample
+endResults <- predict(modelRF, testdatClean[, -length(testdatClean)])
+endResults
+```
