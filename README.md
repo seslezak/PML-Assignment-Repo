@@ -84,17 +84,19 @@ qplot(accel_forearm_z, total_accel_dumbbell, col = classe, data = trainDat, main
 #qplot(accel_forearm_x, total_accel_forearm, col = classe, data = trainDat)  
 ```
 
-The first graph depicts the distribution of the five classes in the training set.
+The first graph depicts the distribution of the five classes in the training set. The most common lift is done according to specification, that is, a correct lift.
 
-INSERT HISTOGRAM HERE
+![](http://i.imgur.com/5BUykmz.png)
 
-The relationship between the acceleration of the forearm and the acceleration of the dumbbell was interesting graphically, so those were plotted.  Forearm acceleration was measured along the x-, y-, and z-axes.  These values are plotted against total acceleration of the dumbbell.
+The relationship between the acceleration of the forearm and the acceleration of the dumbbell was interesting graphically, so those were plotted.  Forearm acceleration was measured along the x-, y-, and z-axes.  These values are plotted against total acceleration of the dumbbell. Each graph depicts a small group of outliers (in red) constituted by members of Class A.  The third graph shows some interesting clustering. The outliers in this graph appear to represent a group of individuals whose curl method, in terms of acceleration along the z-axis of the forearm, contributes particularly well to the overall acceleration of the dumbbell. 
 
-INSERT PLOT #1 HERE
+These features may be worth exploring further.
 
-INSERT PLOT #2 HERE
+![](http://i.imgur.com/0is1JIv.png)
 
-INSERT PLOT #3 HERE
+![](http://i.imgur.com/0U7tTGO.png)
+
+![](http://i.imgur.com/fNqDSZw.png)
 
 #####Training Models and Cross-Validation
 
