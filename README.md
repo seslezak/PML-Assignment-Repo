@@ -1,5 +1,5 @@
 ## PML-Assignment-Repo
-###Repository for Practical Machine Learning Assignment, 22 Nov 15
+###Repo for Practical Machine Learning Assignment, 22 Nov 15
 
 The verbatim details of the assignment do not need to be restated here.  In sum, the project is to write code in R that allows for two _.csv_ files containing data from users of personal fitness devices, such as a FitBit, to be analyzed.  The data are drawn from a study available at the [Human Activity Recognition homepage](http://groupware.les.inf.puc-rio.br/har).
 
@@ -222,7 +222,7 @@ Detection Rate         0.2838   0.1904   0.1714   0.1614   0.1834
 Detection Prevalence   0.2845   0.1935   0.1744   0.1639   0.1838
 Balanced Accuracy      0.9958   0.9935   0.9880   0.9934   0.9987
 ```
-Out of Sample Error was 0.0095.
+The Out of Sample Error in this instance was 0.0095.
 
 #####Running Models on Test Data
 
@@ -237,5 +237,16 @@ endResults <- predict(modelRF, testdatClean[, -length(testdatClean)])
 endResults
 ```
 The complete code for this exercise can be [found on Github](PML Project Code.R).
+
+######Things to Do/Areas to Improve
+
+There are many things I was not able to complete in this exercise.  There are also lessons I learned that I will used in future.
+
+   1. debug the decision tree and GBM models I wanted to use
+   2. take time to tune the DT and GBM models once debugged
+   3. be more careful with variable names -- using similar names led to confusion at times
+   4. spend more time getting to know the data set better and creating useful visualizations
+   5. learn github
+   6. play around more with different settings for cross-validation
 
 ####END
