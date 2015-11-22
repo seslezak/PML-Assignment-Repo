@@ -7,7 +7,7 @@ The data in one file -- the `pml-training.csv` -- are to be used to train and ev
 
 The activity was the Unilateral Dumbbell Biceps Curl, which participants were to execute in five different fashions.  The curl is often done incorrectly, so four of the classes represent these types of errors.  Class A represents the curl done in the correct fashion, according to specification. The other classes represent four incorrect forms.
 
-The prediction involves classifying the individuals into one of five _classes_, each class representing activity quality.  We are to use the data available from the fitness trackers to identify patterns associated with the individuals being tracked and then use those patterns to classify the exercise method used by 20 other individuals.
+The prediction involves classifying the individuals into one of five _classes_, each class representing activity quality.  Students were to use the data available from the fitness trackers to identify patterns associated with the individuals being tracked and then use those patterns to classify the exercise method used by 20 other individuals.
 
 The classes are:
 
