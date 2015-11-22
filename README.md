@@ -234,5 +234,6 @@ outOfSample
 endResults <- predict(modelRF, testdatClean[, -length(testdatClean)])
 endResults
 ```
+The complete code for this exercise can be [found on Github]().
 
 ####END
