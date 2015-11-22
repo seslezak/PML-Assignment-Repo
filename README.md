@@ -1,4 +1,4 @@
-# PML-Assignment-Repo
+## PML-Assignment-Repo
 ###Repository for Practical Machine Learning Assignment, 22 Nov 15
 
 The verbatim details of the assignment do not need to be restated here.  In sum, the project is to write code in R that allows for two _.csv_ files containing data from users of personal fitness devices, such as a FitBit, to be analyzed.  The data are drawn from a study available at the [Human Activity Recognition homepage](http://groupware.les.inf.puc-rio.br/har).
@@ -25,7 +25,7 @@ The steps followed in preparing the model were:
    2. choosing the packages
    3. dividing data into two parts (training and validation)
    4. viewing the cleaned data sets
-   5. selecting models to train
+   5. selecting models and cross-validation
    6. training models
    7. validating models
    8. running models on test data
@@ -98,14 +98,15 @@ INSERT PLOT #2 HERE
 
 INSERT PLOT #3 HERE
 
-####Selecting Models for Training
+#####Selecting Models and Cross-Validation
 
-Initially, the plan was to use three models for this project -- Random Forest, Decision Tree, and GBM. All three were tried, but only the Random Forest model gave good results.  There wasn't time to debug the code for the other two models, though the Decision Tree approach did work.  I could not get the GBM model to function properly before the project deadline.
+Initially, the plan was to use three models for this project -- Random Forest, Decision Tree, and GBM. All three were tried, but only the Random Forest model gave useful results. There wasn't time to debug the code for the other two models, though the Decision Tree approach did work.  I could not get the GBM model to function properly before the project deadline.
 
-There was enough time to play around with the Random Forest model.  On the first pass, using five folds and 250 trees, it gave good results but ran slowly. So the model was run using two different settings for the number of folds -- 5 and 10 -- and three different settings for the numbers of trees -- 250, 50, and 25.
+There was enough time to play around with the Random Forest model's .  On the first pass, using five folds and 250 trees, it gave good results but ran slowly. So the model was run using two different settings for the number of folds -- 5 and 10 -- and three different settings for the numbers of trees -- 250, 50, and 25.
 
-The model using 5 folds and 250 trees had an accuracy rate of 0.998.  
+The model using 5 folds and 250 trees had an accuracy rate of 0.9888.  
 
+######Figure 1:  Random Forest Results, number = 5, ntree = 250
 ```
 Random Forest 
 
@@ -124,7 +125,50 @@ Resampling results across tuning parameters:
   52    0.9800443  0.9747497  0.005979820  0.007560934
 ```
 
-To speed things up, a model using 10 fold and 50 trees was tried.  It had an accuracy of 0.9
+To speed things up, a model using 10 folds and 50 trees was run.  It had an accuracy of 0.9888 with some savings in running time.
+
+######Figure 2: Random Forest Results, number = 10, ntree = 50
+```
+Random Forest 
+
+11776 samples
+   52 predictor
+    5 classes: 'A', 'B', 'C', 'D', 'E' 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 10598, 10598, 10598, 10601, 10598, 10598, ... 
+Resampling results across tuning parameters:
+
+  mtry  Accuracy   Kappa      Accuracy SD  Kappa SD   
+   2    0.9888752  0.9859258  0.003190104  0.004035583
+  27    0.9900644  0.9874312  0.003227858  0.004083370
+  52    0.9824228  0.9777640  0.004326004  0.005470536
+```
+
+A number of other combinations of folds and numbers of trees were tried.  The quickest experiment used 5 folds and 25 trees. Its accuracy was 0.9822.  So a lot of speed was gained without giving up accuracy by using a simpler cross-validation method.
+
+Figure 3:  Random Forest Results, number = 5, ntree = 25
+```
+Random Forest 
+
+11776 samples
+   52 predictor
+    5 classes: 'A', 'B', 'C', 'D', 'E' 
+
+No pre-processing
+Resampling: Cross-Validated (5 fold) 
+Summary of sample sizes: 9421, 9421, 9420, 9421, 9421 
+Resampling results across tuning parameters:
+
+  mtry  Accuracy   Kappa      Accuracy SD  Kappa SD   
+   2    0.9822519  0.9775421  0.002839958  0.003600377
+  27    0.9872623  0.9838850  0.003396854  0.004299996
+  52    0.9784304  0.9727105  0.003444083  0.004365999
+```
+
+
+
 
 
 
