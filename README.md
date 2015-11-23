@@ -238,7 +238,7 @@ endResults
 ```
 The complete code for this exercise can be [found on Github](PML Project Code.R).
 
-######Things to Do/Areas to Improve
+#####Things to Do/Areas to Improve
 
 There are many things I was not able to complete in this exercise.  There are also lessons I learned that I will used in future.
 
