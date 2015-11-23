@@ -248,5 +248,7 @@ There are many things I was not able to complete in this exercise.  There are al
    4. spend more time getting to know the data set better and creating useful visualizations
    5. learn github
    6. play around more with different settings for cross-validation
+   7. find a method to present graphs using 3 axes
+   8. perform near zero variance analysis
 
 ####END
