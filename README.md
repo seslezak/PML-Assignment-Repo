@@ -31,7 +31,7 @@ The steps followed in preparing the model were:
    6. validating models
    7. running models on test data
 
-#####Viewing and Cleaning Data
+##### Viewing and Cleaning Data
 
 The training data set contained 19,622 observations of 160 variables.  The testing data set contained 20 observations of 160 variables. Nearly two-thirds of the observations were missing.  The first seven columns of each file contained superfluous information which had to be removed.  We also had to set a seed to allow for replicability of the experiment.  The following code was used for these purposes:
 
@@ -45,7 +45,7 @@ traindatClean <- traindatClean[, colSums(is.na(traindatClean)) == 0]
 testdatClean <- testdatClean[, colSums(is.na(testdatClean)) == 0]  
 ```
 
-#####Package Selection
+##### Package Selection
 
 The R packages used in the experiment were selected as the code was written and tested. Packages were chosen for their usefulness in terms of running the models and for their graphics capabilities.  This code was used for choosing packages:
 
@@ -59,7 +59,7 @@ library(e1071)
 library(randomForest)
 ```
 
-#####Creating the Testing and Validation Data Sets
+##### Creating the Testing and Validation Data Sets
 
 It was necessary to divide the large _training.csv_ file into two parts, one for training the model and the other for validating it. We decided to reserve 60% of the data for training and 40% for validation.  We also wanted to look at the dimensions of the resulting data sets.  The test set contained 11,776 observations of 53 variables.  The vailidation set contained 7,846 observations of 53 variables. The following code was used for this stage of the experiment:
 
@@ -71,7 +71,7 @@ dim(trainDat)
 dim(validDat)  
 ```
 
-#####Viewing the Cleaned Data Sets
+##### Viewing the Cleaned Data Sets
 
 At this point, we wanted to play around with the data a bit to develop some visuals of the data sets.  A number of different graphic representations were explored.  The code below was used to generate the following graphics.  Please note that several of the graphics, though interesting, were deactivated in the code.  These are signified by the hashtags.
 
@@ -100,7 +100,7 @@ These features may be worth exploring further.
 
 ![](http://i.imgur.com/fNqDSZw.png)
 
-#####Training Models and Cross-Validation
+##### Training Models and Cross-Validation
 
 Initially, the plan was to use three models for this project -- Random Forest, Decision Tree, and GBM. All three were tried, but only the Random Forest model gave useful results. There wasn't time to debug the code for the other two models, though the Decision Tree approach did work.  I could not get the GBM model to function properly before the project deadline.
 
@@ -119,7 +119,7 @@ There was enough time to play around with the Random Forest model's settings.  O
 
 The model using 5 folds and 250 trees had an accuracy rate of 0.9888 on the 60% of data contained in the test set.
 
-######Figure 1:  Random Forest Results, number = 5, ntree = 250
+###### Figure 1:  Random Forest Results, number = 5, ntree = 250
 ```
 Random Forest 
 
@@ -140,7 +140,7 @@ Resampling results across tuning parameters:
 
 To speed things up, a model using 10 folds and 50 trees was run.  It had an accuracy of 0.9888 with some savings in running time.
 
-######Figure 2: Random Forest Results, number = 10, ntree = 50
+###### Figure 2: Random Forest Results, number = 10, ntree = 50
 ```
 Random Forest 
 
@@ -161,7 +161,7 @@ Resampling results across tuning parameters:
 
 The quickest experiment used 5 folds and 25 trees. Its accuracy was 0.9822.  So a lot of speed was gained without giving up accuracy by using a simpler cross-validation method.
 
-######Figure 3:  Random Forest Results, number = 5, ntree = 25
+###### Figure 3:  Random Forest Results, number = 5, ntree = 25
 ```
 Random Forest 
 
@@ -180,7 +180,7 @@ Resampling results across tuning parameters:
   52    0.9784304  0.9727105  0.003444083  0.004365999
 ```
 
-#####Validating Models
+##### Validating Models
 
 The Random Forest model was then used on the 40% of data constituting the validation set.  The following code was run:
 
@@ -224,7 +224,7 @@ Balanced Accuracy      0.9958   0.9935   0.9880   0.9934   0.9987
 ```
 The Out of Sample Error in this instance was 0.0095.
 
-#####Running Models on Test Data
+##### Running Models on Test Data
 
 The trained and validated Random Forest model was then applied to the test data set consisting of quality activity measurements of 20 individuals.  The following code succeeded in predicting 20 out of 20 cases.
 
@@ -238,7 +238,7 @@ endResults
 ```
 The complete code for this exercise can be [found on Github](PML Project Code.R).
 
-#####Things to Do/Areas to Improve
+##### Things to Do/Areas to Improve
 
 There are many things I was not able to complete in this exercise.  There are also lessons I learned that I will used in future.
 
@@ -251,4 +251,4 @@ There are many things I was not able to complete in this exercise.  There are al
    7. find a method to present graphs using 3 axes
    8. perform near zero variance analysis
 
-####END
+### END
