@@ -1,5 +1,5 @@
 ## PML-Assignment-Repo
-###Repo for Practical Machine Learning Assignment, 22 Nov 15
+### Repo for Practical Machine Learning Assignment, 22 Nov 15
 
 The verbatim details of the assignment do not need to be restated here.  In sum, the project is to write code in R that allows for two _.csv_ files containing data from users of personal fitness devices, such as a FitBit, to be analyzed.  The data are drawn from a study available at the [Human Activity Recognition homepage](http://groupware.les.inf.puc-rio.br/har).
 
